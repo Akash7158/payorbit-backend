@@ -11,6 +11,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import com.payorbit.security.JwtFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import java.util.List;
 
 
@@ -85,5 +88,24 @@ public class SecurityConfig {
         );
 
         return source;
+    }
+    @Configuration
+    public class CorsConfig {
+
+        @Bean
+        public WebMvcConfigurer corsConfigurer() {
+
+            return new WebMvcConfigurer() {
+
+                @Override
+                public void addCorsMappings(CorsRegistry registry) {
+
+                    registry.addMapping("/**")
+                            .allowedOrigins("*")
+                            .allowedMethods("*")
+                            .allowedHeaders("*");
+                }
+            };
+        }
     }
 }
