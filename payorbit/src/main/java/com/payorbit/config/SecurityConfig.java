@@ -69,7 +69,11 @@ public class SecurityConfig {
                 new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173"));
+                List.of(
+                        "http://localhost:5173",
+                        "https://payorbit-eight.vercel.app"
+                )
+        );
 
         configuration.setAllowedMethods(
                 List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
@@ -88,24 +92,5 @@ public class SecurityConfig {
         );
 
         return source;
-    }
-    @Configuration
-    public class CorsConfig {
-
-        @Bean
-        public WebMvcConfigurer corsConfigurer() {
-
-            return new WebMvcConfigurer() {
-
-                @Override
-                public void addCorsMappings(CorsRegistry registry) {
-
-                    registry.addMapping("/**")
-                            .allowedOrigins("*")
-                            .allowedMethods("*")
-                            .allowedHeaders("*");
-                }
-            };
-        }
     }
 }
