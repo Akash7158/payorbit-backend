@@ -41,6 +41,7 @@ public class SecurityConfig {
                                 org.springframework.http.HttpMethod.OPTIONS,
                                 "/**"
                         ).permitAll()
+                        .anyRequest().permitAll()
 
                         .requestMatchers(
                                 "/api/payment/**"
